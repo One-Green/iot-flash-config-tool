@@ -1,0 +1,25 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+
+  freeze:
+    desc: freeze py dependencies
+    cmds:
+      - pip freeze > requirements.txt
+
+  ui2py:
+    desc: generate py from Qt ui
+    sources:
+      - lib/main.ui
+    cmds:
+      - pyuic6 lib/main.ui -o  lib/main_ui.py
+
+  run:
+    desc: run app ui
+    sources:
+      - lib/main_ui.py
+    cmds:
+      - task: ui2py
+      - python main.py
