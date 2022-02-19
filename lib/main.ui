@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -107,12 +107,12 @@
         <x>0</x>
         <y>90</y>
         <width>401</width>
-        <height>41</height>
+        <height>89</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="gitLabel">
          <property name="text">
           <string>Git</string>
          </property>
@@ -121,24 +121,92 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="gitStatusLabel">
+         <property name="text">
+          <string>unknown</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="gitInstallButton">
+         <property name="text">
+          <string>install</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="pythonStatusLabel">
+         <property name="text">
+          <string>unknown</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="pythonLabel">
+         <property name="text">
+          <string>Python</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pythonCheckButton">
+         <property name="text">
+          <string>check</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pythonInstallButton">
          <property name="text">
           <string>install</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="gitCheckButton">
          <property name="text">
           <string>check</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="label_7">
+       <item row="2" column="0">
+        <widget class="QLabel" name="pioLabel">
          <property name="text">
-          <string>unknow</string>
+          <string>Platformio</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="pioCheckButton">
+         <property name="text">
+          <string>check</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="pioInstallButton">
+         <property name="text">
+          <string>install</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLabel" name="pioStatusLabel">
+         <property name="text">
+          <string>unknown</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -168,14 +236,14 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="installAllButton">
          <property name="text">
           <string>install</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton_5">
+        <widget class="QPushButton" name="checkAllButton">
          <property name="text">
           <string>check</string>
          </property>
@@ -184,7 +252,7 @@
        <item row="0" column="3">
         <widget class="QLabel" name="label_9">
          <property name="text">
-          <string>unknow</string>
+          <string>unknown</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

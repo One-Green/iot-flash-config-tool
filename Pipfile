@@ -9,8 +9,10 @@ pyqt6 = "*"
 py7zr = "*"
 pyinstaller = "*"
 platformio = "*"
+colorlog = "*"
 
 [dev-packages]
+ipython = "*"
 
 [requires]
 python_version = "3.10"
