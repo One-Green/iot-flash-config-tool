@@ -269,3 +269,6 @@ cython_debug/
 
 # Pyinstaller build
 build_linux/flash_tool
+
+# Taskfile
+.task/*
