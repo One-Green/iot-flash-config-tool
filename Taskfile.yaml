@@ -23,3 +23,13 @@ tasks:
     cmds:
       - task: ui2py
       - python main.py
+
+  build-bin:
+    desc: build one file binary
+    sources:
+      - Ubuntu.dockerfile
+    cmds:
+      - task: freeze
+      - task: ui2py
+      - sudo docker build -f Ubuntu.dockerfile . -t ubuntu:build
+      - sudo docker cp $(sudo docker create --rm ubuntu:build):/src/dist/main ${PWD}/build_linux/flash_tool

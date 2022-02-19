@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 pyside6 = "*"
 pyqt6 = "*"
+py7zr = "*"
+pyinstaller = "*"
+platformio = "*"
 
 [dev-packages]
 
