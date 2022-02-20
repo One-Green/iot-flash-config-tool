@@ -1,1 +1,1 @@
-__all__ = ["setup_handlers"]
+__all__ = ["setup_handlers", "firmware_handlers"]

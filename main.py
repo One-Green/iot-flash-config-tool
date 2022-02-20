@@ -1,13 +1,17 @@
 import sys
-from PyQt6.QtWidgets import QMainWindow, QApplication
 import colorlog
+from PyQt6.QtWidgets import QMainWindow, QApplication
 from src.main_ui import Ui_MainWindow
-from src.handlers.setup_handlers import SetupHandler
 
+# Handler classes
+from src.handlers.setup_handlers import SetupHandler
+from src.handlers.firmware_handlers import FirmwareHandler
 
 handler = colorlog.StreamHandler()
-handler.setFormatter(colorlog.ColoredFormatter('%(log_color)s%(levelname)s:%(name)s:%(message)s'))
-logger = colorlog.getLogger('default-logger')
+handler.setFormatter(
+    colorlog.ColoredFormatter("%(log_color)s%(levelname)s:%(name)s:%(message)s")
+)
+logger = colorlog.getLogger("default-logger")
 logger.addHandler(handler)
 logger.setLevel(colorlog.DEBUG)
 
@@ -25,6 +29,7 @@ class Main(QMainWindow):
         # handler
         logger.debug("loading handlers classes")
         self.setup_tab = SetupHandler(ui=self.ui)
+        self.firmware_tab = FirmwareHandler(ui=self.ui)
         logger.debug("loading handlers classes: done")
 
         # --- button method link
@@ -47,10 +52,13 @@ class Main(QMainWindow):
         self.ui.pioInstallButton.setEnabled(False)
         # ----- Check all
         self.ui.checkAllButton.clicked.connect(self.setup_tab.check_all)
+
+        # ----- tab: firmware
+        self.ui.gitCloneOrFetchButton.clicked.connect(self.firmware_tab.clone_or_update)
         logger.debug("linking button to actions done")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     main = Main()
     main.show()

@@ -6,13 +6,14 @@ name = "pypi"
 [packages]
 pyside6 = "*"
 pyqt6 = "*"
-py7zr = "*"
-pyinstaller = "*"
-platformio = "*"
 colorlog = "*"
+gitpython = "*"
 
 [dev-packages]
 ipython = "*"
+pyinstaller = "*"
+platformio = "*"
+black = "*"
 
 [requires]
 python_version = "3.10"

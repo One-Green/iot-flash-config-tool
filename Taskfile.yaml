@@ -7,6 +7,8 @@ tasks:
   freeze:
     desc: freeze py dependencies
     cmds:
+      - pipenv update
+      - pipenv clean
       - pip freeze > requirements.txt
 
   ui2py:
@@ -16,12 +18,22 @@ tasks:
     cmds:
       - pyuic6 src/main.ui -o  src/main_ui.py
 
+  black:
+    desc: run "black ."  to format python code
+    cmds:
+      - black .
+
+  clean:
+    desc: clean stuff
+    cmds:
+      - yes | rm -rv _firmware || true
   run:
     desc: run app ui
     sources:
       - src/main_ui.py
     cmds:
       - task: ui2py
+      - task: black
       - python main.py
 
   build-bin:
@@ -29,7 +41,9 @@ tasks:
     sources:
       - Ubuntu.dockerfile
     cmds:
+      - task: clean
       - task: freeze
       - task: ui2py
+      - task: black
       - sudo docker build -f Ubuntu.dockerfile . -t ubuntu:build
       - sudo docker cp $(sudo docker create --rm ubuntu:build):/src/dist/main ${PWD}/build_linux/flash_tool

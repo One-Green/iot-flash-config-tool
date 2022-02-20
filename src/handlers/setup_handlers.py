@@ -120,7 +120,7 @@ class SetupHandler:
             self.ui.pioInstallButton.setEnabled(True)
 
     def check_all(self):
-        self. check_git()
+        self.check_git()
         self.check_python()
         self.check_pip()
         self.check_pio()
