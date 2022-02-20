@@ -55,6 +55,8 @@ class Main(QMainWindow):
 
         # ----- tab: firmware
         self.ui.gitCloneOrFetchButton.clicked.connect(self.firmware_tab.clone_or_update)
+        self.ui.gitTagListWidget.itemClicked.connect(self.firmware_tab.set_tag)
+        self.ui.gitCheckOutButton.clicked.connect(self.firmware_tab.checkout)
         logger.debug("linking button to actions done")
 
 

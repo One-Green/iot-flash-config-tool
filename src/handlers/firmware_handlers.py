@@ -1,5 +1,5 @@
 import os
-from git import Repo
+from git import Repo, Git
 import colorlog
 from src.main_ui import Ui_MainWindow
 import time
@@ -13,6 +13,7 @@ class FirmwareHandler:
     def __init__(self, ui):
         self.ui: Ui_MainWindow = ui
         self.origin: str = ""
+        self.git_tag: str = ""
 
     def clone(self):
         if not os.path.isdir(LOCAL_REPO):
@@ -82,6 +83,15 @@ class FirmwareHandler:
         else:
             logger.error("can not found git repo to enum tags/versions")
             self.ui.gitTagListWidget.addItem(["repo not found"])
+
+    def set_tag(self, item):
+        self.git_tag = item.text()
+        logger.debug(f"clicked version {self.git_tag}")
+
+    def checkout(self):
+        logger.info(f"Git checkout version {self.git_tag}")
+        Git(LOCAL_REPO).checkout(self.git_tag, force=True)
+        logger.info(f"Git checkout version {self.git_tag} done")
 
     def clone_or_update(self):
         self.clone()
