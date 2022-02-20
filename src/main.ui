@@ -390,7 +390,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QListView" name="gitVersionList">
+      <widget class="QListWidget" name="gitTagListWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
