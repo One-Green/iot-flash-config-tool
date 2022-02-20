@@ -31,16 +31,22 @@ class Main(QMainWindow):
         # ----- tab: setup
         logger.debug("linking button to actions")
         self.ui.gitCheckButton.clicked.connect(self.setup_tab.check_git)
+        self.ui.gitInstallButton.clicked.connect(self.setup_tab.setup_git)
         self.ui.gitInstallButton.setEnabled(False)
         # ----- Python
         self.ui.pythonCheckButton.clicked.connect(self.setup_tab.check_python)
+        self.ui.pythonInstallButton.clicked.connect(self.setup_tab.setup_python)
         self.ui.pythonInstallButton.setEnabled(False)
         # ----- Pip
         self.ui.pipCheckButton.clicked.connect(self.setup_tab.check_pip)
+        self.ui.pipInstallButton.clicked.connect(self.setup_tab.setup_pip)
         self.ui.pipInstallButton.setEnabled(False)
         # ----- Platform IO
         self.ui.pioCheckButton.clicked.connect(self.setup_tab.check_pio)
+        self.ui.pioInstallButton.clicked.connect(self.setup_tab.setup_pio)
         self.ui.pioInstallButton.setEnabled(False)
+        # ----- Check all
+        self.ui.checkAllButton.clicked.connect(self.setup_tab.check_all)
         logger.debug("linking button to actions done")
 
 
