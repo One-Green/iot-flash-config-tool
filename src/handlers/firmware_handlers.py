@@ -90,7 +90,13 @@ class FirmwareHandler:
 
     def checkout(self):
         logger.info(f"Git checkout version {self.git_tag}")
+        self.ui.gitCheckOutStatus.setStyleSheet("color: blue;")
+        self.ui.gitCheckOutStatus.setText("changing version ...")
+        self.ui.gitCheckOutStatus.repaint()
+        time.sleep(0.5)
         Git(LOCAL_REPO).checkout(self.git_tag, force=True)
+        self.ui.gitCheckOutStatus.setStyleSheet("background-color: green;")
+        self.ui.gitCheckOutStatus.setText("version selected")
         logger.info(f"Git checkout version {self.git_tag} done")
 
     def clone_or_update(self):
