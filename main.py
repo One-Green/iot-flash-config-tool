@@ -6,6 +6,7 @@ from src.main_ui import Ui_MainWindow
 # Handler classes
 from src.handlers.setup_handlers import SetupHandler
 from src.handlers.firmware_handlers import FirmwareHandler
+from src.handlers.core_config_handlers import CoreConfigHandler
 
 handler = colorlog.StreamHandler()
 handler.setFormatter(
@@ -30,6 +31,7 @@ class Main(QMainWindow):
         logger.debug("loading handlers classes")
         self.setup_tab = SetupHandler(ui=self.ui)
         self.firmware_tab = FirmwareHandler(ui=self.ui)
+        self.core_config_tab = CoreConfigHandler(ui=self.ui)
         logger.debug("loading handlers classes: done")
 
         # --- button method link
@@ -57,6 +59,11 @@ class Main(QMainWindow):
         self.ui.gitCloneOrFetchButton.clicked.connect(self.firmware_tab.clone_or_update)
         self.ui.gitTagListWidget.itemClicked.connect(self.firmware_tab.set_tag)
         self.ui.gitCheckOutButton.clicked.connect(self.firmware_tab.checkout)
+
+        # ----- tab: core configuration
+        self.ui.pushButton.clicked.connect(self.core_config_tab.load_file)
+        self.ui.pushButton_2.clicked.connect(self.core_config_tab.save_file)
+
         logger.debug("linking button to actions done")
 
 
