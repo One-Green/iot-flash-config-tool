@@ -1,18 +1,20 @@
 import shutil
 import platform
 import colorlog
+from src.main_ui import Ui_MainWindow
 
 logger = colorlog.getLogger("default-logger")
 
 GIT: str = "git"
 PYTHON: str = "python"
+PIP: str = "pip"
 PIO: str = "pio"
 PIO_EXE: str = "pio.exe"
 
 
 class SetupHandler:
     def __init__(self, ui):
-        self.ui = ui
+        self.ui: Ui_MainWindow = ui
 
     @staticmethod
     def is_git_exist() -> bool:
@@ -28,6 +30,15 @@ class SetupHandler:
         _ = shutil.which(PYTHON)
         if _:
             logger.info(f"{PYTHON} found: '{_}'")
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def is_pip_exist() -> bool:
+        _ = shutil.which(PIP)
+        if _:
+            logger.info(f"{PIP} found: '{_}'")
             return True
         else:
             return False
@@ -70,6 +81,15 @@ class SetupHandler:
         else:
             self.ui.pythonStatusLabel.setText("KO")
             self.ui.pythonStatusLabel.setStyleSheet("background-color: red;")
+            self.ui.pythonInstallButton.setEnabled(True)
+
+    def check_pip(self):
+        if self.is_pip_exist():
+            self.ui.pipStatusLabel.setText("OK")
+            self.ui.pipStatusLabel.setStyleSheet("background-color: green;")
+        else:
+            self.ui.pipStatusLabel.setText("KO")
+            self.ui.pipStatusLabel.setStyleSheet("background-color: red;")
             self.ui.pythonInstallButton.setEnabled(True)
 
     def check_pio(self):

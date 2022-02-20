@@ -35,6 +35,9 @@ class Main(QMainWindow):
         # ----- Python
         self.ui.pythonCheckButton.clicked.connect(self.setup_tab.check_python)
         self.ui.pythonInstallButton.setEnabled(False)
+        # ----- Pip
+        self.ui.pipCheckButton.clicked.connect(self.setup_tab.check_pip)
+        self.ui.pipInstallButton.setEnabled(False)
         # ----- Platform IO
         self.ui.pioCheckButton.clicked.connect(self.setup_tab.check_pio)
         self.ui.pioInstallButton.setEnabled(False)

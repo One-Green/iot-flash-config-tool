@@ -107,7 +107,7 @@
         <x>0</x>
         <y>90</y>
         <width>401</width>
-        <height>89</height>
+        <height>120</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -121,30 +121,10 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="gitStatusLabel">
-         <property name="text">
-          <string>unknown</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="2">
         <widget class="QPushButton" name="gitInstallButton">
          <property name="text">
           <string>install</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="pythonStatusLabel">
-         <property name="text">
-          <string>unknown</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -155,13 +135,6 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pythonCheckButton">
-         <property name="text">
-          <string>check</string>
          </property>
         </widget>
        </item>
@@ -179,7 +152,48 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="0" column="3">
+        <widget class="QLabel" name="gitStatusLabel">
+         <property name="text">
+          <string>unknown</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="pioCheckButton">
+         <property name="text">
+          <string>check</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QPushButton" name="pioInstallButton">
+         <property name="text">
+          <string>install</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="pythonStatusLabel">
+         <property name="text">
+          <string>unknown</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pythonCheckButton">
+         <property name="text">
+          <string>check</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
         <widget class="QLabel" name="pioLabel">
          <property name="text">
           <string>Platformio</string>
@@ -189,22 +203,42 @@
          </property>
         </widget>
        </item>
+       <item row="3" column="3">
+        <widget class="QLabel" name="pioStatusLabel">
+         <property name="text">
+          <string>unknown</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="pipLabel">
+         <property name="text">
+          <string>Pip</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="1">
-        <widget class="QPushButton" name="pioCheckButton">
+        <widget class="QPushButton" name="pipCheckButton">
          <property name="text">
           <string>check</string>
          </property>
         </widget>
        </item>
        <item row="2" column="2">
-        <widget class="QPushButton" name="pioInstallButton">
+        <widget class="QPushButton" name="pipInstallButton">
          <property name="text">
           <string>install</string>
          </property>
         </widget>
        </item>
        <item row="2" column="3">
-        <widget class="QLabel" name="pioStatusLabel">
+        <widget class="QLabel" name="pipStatusLabel">
          <property name="text">
           <string>unknown</string>
          </property>
