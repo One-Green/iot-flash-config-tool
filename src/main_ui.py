@@ -15,9 +15,9 @@ class Ui_MainWindow(object):
         MainWindow.resize(487, 507)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 481, 461))
-        self.tabWidget.setObjectName("tabWidget")
+        self.Flash = QtWidgets.QTabWidget(self.centralwidget)
+        self.Flash.setGeometry(QtCore.QRect(0, 0, 481, 461))
+        self.Flash.setObjectName("Flash")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.tab)
@@ -125,7 +125,7 @@ class Ui_MainWindow(object):
         )
         self.checkAllButton.setSizePolicy(sizePolicy)
         self.checkAllButton.setObjectName("checkAllButton")
-        self.tabWidget.addTab(self.tab, "")
+        self.Flash.addTab(self.tab, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
         self.groupBox = QtWidgets.QGroupBox(self.tab_3)
@@ -173,10 +173,13 @@ class Ui_MainWindow(object):
         self.gitTagListWidget = QtWidgets.QListWidget(self.groupBox_2)
         self.gitTagListWidget.setGeometry(QtCore.QRect(10, 30, 151, 181))
         self.gitTagListWidget.setObjectName("gitTagListWidget")
-        self.tabWidget.addTab(self.tab_3, "")
+        self.Flash.addTab(self.tab_3, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
-        self.tabWidget.addTab(self.tab_2, "")
+        self.Flash.addTab(self.tab_2, "")
+        self.tab_4 = QtWidgets.QWidget()
+        self.tab_4.setObjectName("tab_4")
+        self.Flash.addTab(self.tab_4, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -216,7 +219,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.Flash.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -246,8 +249,8 @@ class Ui_MainWindow(object):
         self.pipInstallButton.setText(_translate("MainWindow", "install"))
         self.pipStatusLabel.setText(_translate("MainWindow", "unknown"))
         self.checkAllButton.setText(_translate("MainWindow", "Check all"))
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Setup")
+        self.Flash.setTabText(
+            self.Flash.indexOf(self.tab), _translate("MainWindow", "Setup")
         )
         self.groupBox.setTitle(_translate("MainWindow", "Code source"))
         self.gitCloneOrFetchButton.setText(_translate("MainWindow", "Download/Update"))
@@ -261,12 +264,16 @@ class Ui_MainWindow(object):
         self.gitCheckOutButton.setText(_translate("MainWindow", "Set version"))
         self.gitCheckOutStatus.setText(_translate("MainWindow", "unknow"))
         self.gitCheckOutStatusLabel.setText(_translate("MainWindow", "status:"))
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab_3),
+        self.Flash.setTabText(
+            self.Flash.indexOf(self.tab_3),
             _translate("MainWindow", "Download firmware"),
         )
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Flash")
+        self.Flash.setTabText(
+            self.Flash.indexOf(self.tab_2),
+            _translate("MainWindow", "Core Configuration"),
+        )
+        self.Flash.setTabText(
+            self.Flash.indexOf(self.tab_4), _translate("MainWindow", "Flash")
         )
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.actionSetup_depdencies.setText(_translate("MainWindow", "New core"))
