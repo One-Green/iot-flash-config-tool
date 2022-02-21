@@ -36,8 +36,8 @@ tasks:
       - task: black
       - python main.py
 
-  build-bin:
-    desc: build one file binary
+  build-bin-linux:
+    desc: build one file binary for linux
     sources:
       - Ubuntu.dockerfile
     cmds:
@@ -46,4 +46,19 @@ tasks:
       - task: ui2py
       - task: black
       - sudo docker build -f Ubuntu.dockerfile . -t ubuntu:build
-      - sudo docker cp $(sudo docker create --rm ubuntu:build):/src/dist/main ${PWD}/build_linux/flash_tool
+      - sudo docker cp $(sudo docker create --rm ubuntu:build):/src/dist/main ${PWD}/build_linux/flash_tool_linux_amd64
+
+  build-bin-windows:
+    desc: build one file binary for windows
+    sources:
+      - requirements.txt
+    cmds:
+      - task: clean
+      - task: freeze
+      - task: ui2py
+      - task: black
+      - wine pip install -r requirements.txt
+      - wine pyinstaller --onefile --windowed main.py
+      - mv dist/main.exe build_windows/flash_tool_win_amd64.exe
+      - yes | rm -rv build
+      - yes | rm -rv dist
