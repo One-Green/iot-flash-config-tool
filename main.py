@@ -61,8 +61,8 @@ class Main(QMainWindow):
         self.ui.gitCheckOutButton.clicked.connect(self.firmware_tab.checkout)
 
         # ----- tab: core configuration
-        self.ui.pushButton.clicked.connect(self.core_config_tab.load_file)
-        self.ui.pushButton_2.clicked.connect(self.core_config_tab.save_file)
+        self.ui.loadCoreConfigFileButton.clicked.connect(self.core_config_tab.load_file)
+        self.ui.saveCoreConfigFileButton.clicked.connect(self.core_config_tab.save_file)
 
         logger.debug("linking button to actions done")
 

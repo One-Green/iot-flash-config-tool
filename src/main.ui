@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -398,8 +398,8 @@
         <rect>
          <x>170</x>
          <y>90</y>
-         <width>146</width>
-         <height>25</height>
+         <width>261</width>
+         <height>121</height>
         </rect>
        </property>
        <property name="text">
@@ -418,19 +418,19 @@
         <x>10</x>
         <y>370</y>
         <width>451</width>
-        <height>51</height>
+        <height>31</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="loadCoreConfigFileButton">
          <property name="text">
           <string>Load config file</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="saveCoreConfigFileButton">
          <property name="text">
           <string>Save config file</string>
          </property>
@@ -449,40 +449,40 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_5">
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="apiPortLineEdit"/>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_3"/>
+        <widget class="QLineEdit" name="apiUsernameLineEdit"/>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="apiPortLabel">
          <property name="text">
           <string>Api port</string>
          </property>
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_4"/>
+        <widget class="QLineEdit" name="apiPasswordLineEdit"/>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_9">
+        <widget class="QLabel" name="apiUsernameLabel">
          <property name="text">
           <string>Api username</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="apiHostLineEdit"/>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="apiHostLabel">
          <property name="text">
           <string>Api host</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="apiPassword_label">
          <property name="text">
           <string>Api password</string>
          </property>
@@ -501,10 +501,10 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_9"/>
+        <widget class="QLineEdit" name="mqttPortLineEdit"/>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_10"/>
+        <widget class="QLineEdit" name="mqttUsernameLineEdit"/>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_15">
@@ -514,7 +514,7 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_11"/>
+        <widget class="QLineEdit" name="mqttPasswordLineEdit"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_16">
@@ -524,17 +524,17 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit_12"/>
+        <widget class="QLineEdit" name="mqttHostLineEdit"/>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_17">
+        <widget class="QLabel" name="mqttHostLabel">
          <property name="text">
           <string>MQTT host</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_18">
+        <widget class="QLabel" name="mqttPasswordLabel">
          <property name="text">
           <string>MQTT password</string>
          </property>
@@ -553,21 +553,21 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
        <item row="0" column="0">
-        <widget class="QPushButton" name="gitCloneOrFetchButton_2">
+        <widget class="QPushButton" name="testApiConnexionButton">
          <property name="text">
           <string>Test API con.</string>
          </property>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QLabel" name="gitCloneOrFetchStatus_2">
+        <widget class="QLabel" name="testApiConnexionStatus">
          <property name="text">
           <string>unknow</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLabel" name="gitCloneOrFetchStatusLabel_2">
+        <widget class="QLabel" name="testApiConnexionStatusLabel">
          <property name="text">
           <string>status:</string>
          </property>
@@ -586,27 +586,53 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_8">
        <item row="0" column="0">
-        <widget class="QPushButton" name="gitCloneOrFetchButton_3">
+        <widget class="QPushButton" name="testMqttConnexionButton">
          <property name="text">
           <string>Test MQTT con.</string>
          </property>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QLabel" name="gitCloneOrFetchStatus_3">
+        <widget class="QLabel" name="testMqttConnexionStatus">
          <property name="text">
           <string>unknow</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLabel" name="gitCloneOrFetchStatusLabel_3">
+        <widget class="QLabel" name="testMqttConnexionStatusLabel">
          <property name="text">
           <string>status:</string>
          </property>
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QLabel" name="saveLoadStatusLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>400</y>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>status:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saveLoadStatus">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>400</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>unknow</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
