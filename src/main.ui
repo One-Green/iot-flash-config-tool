@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -360,9 +360,9 @@
       <widget class="QWidget" name="gridLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>220</y>
-         <width>451</width>
+         <x>170</x>
+         <y>40</y>
+         <width>261</width>
          <height>41</height>
         </rect>
        </property>
@@ -371,13 +371,6 @@
          <widget class="QPushButton" name="gitCheckOutButton">
           <property name="text">
            <string>Set version</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="gitCheckOutStatus">
-          <property name="text">
-           <string>unknow</string>
           </property>
          </widget>
         </item>
@@ -398,6 +391,19 @@
          <width>151</width>
          <height>181</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="gitCheckOutStatus">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>90</y>
+         <width>146</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>unknow</string>
        </property>
       </widget>
      </widget>

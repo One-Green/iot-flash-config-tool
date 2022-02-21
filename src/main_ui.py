@@ -156,7 +156,7 @@ class Ui_MainWindow(object):
         self.groupBox_2.setGeometry(QtCore.QRect(10, 130, 461, 271))
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayoutWidget_3 = QtWidgets.QWidget(self.groupBox_2)
-        self.gridLayoutWidget_3.setGeometry(QtCore.QRect(10, 220, 451, 41))
+        self.gridLayoutWidget_3.setGeometry(QtCore.QRect(170, 40, 261, 41))
         self.gridLayoutWidget_3.setObjectName("gridLayoutWidget_3")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.gridLayoutWidget_3)
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -164,15 +164,15 @@ class Ui_MainWindow(object):
         self.gitCheckOutButton = QtWidgets.QPushButton(self.gridLayoutWidget_3)
         self.gitCheckOutButton.setObjectName("gitCheckOutButton")
         self.gridLayout_3.addWidget(self.gitCheckOutButton, 0, 0, 1, 1)
-        self.gitCheckOutStatus = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.gitCheckOutStatus.setObjectName("gitCheckOutStatus")
-        self.gridLayout_3.addWidget(self.gitCheckOutStatus, 0, 2, 1, 1)
         self.gitCheckOutStatusLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
         self.gitCheckOutStatusLabel.setObjectName("gitCheckOutStatusLabel")
         self.gridLayout_3.addWidget(self.gitCheckOutStatusLabel, 0, 1, 1, 1)
         self.gitTagListWidget = QtWidgets.QListWidget(self.groupBox_2)
         self.gitTagListWidget.setGeometry(QtCore.QRect(10, 30, 151, 181))
         self.gitTagListWidget.setObjectName("gitTagListWidget")
+        self.gitCheckOutStatus = QtWidgets.QLabel(self.groupBox_2)
+        self.gitCheckOutStatus.setGeometry(QtCore.QRect(170, 90, 146, 25))
+        self.gitCheckOutStatus.setObjectName("gitCheckOutStatus")
         self.Flash.addTab(self.tab_3, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -321,7 +321,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.Flash.setCurrentIndex(2)
+        self.Flash.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -364,8 +364,8 @@ class Ui_MainWindow(object):
         )
         self.groupBox_2.setTitle(_translate("MainWindow", "Select version to flash"))
         self.gitCheckOutButton.setText(_translate("MainWindow", "Set version"))
-        self.gitCheckOutStatus.setText(_translate("MainWindow", "unknow"))
         self.gitCheckOutStatusLabel.setText(_translate("MainWindow", "status:"))
+        self.gitCheckOutStatus.setText(_translate("MainWindow", "unknow"))
         self.Flash.setTabText(
             self.Flash.indexOf(self.tab_3),
             _translate("MainWindow", "Download firmware"),

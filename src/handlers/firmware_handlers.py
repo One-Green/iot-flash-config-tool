@@ -1,5 +1,6 @@
 import os
 from git import Repo, Git
+from git.exc import GitCommandError
 import colorlog
 from src.main_ui import Ui_MainWindow
 import time
@@ -61,7 +62,6 @@ class FirmwareHandler:
 
     def enum_versions(self):
         self.ui.gitTagListWidget.clear()
-        logger.info(f"Enumerating available tags in repo")
         self.ui.gitCloneOrFetchStatus.setStyleSheet("color: blue;")
         self.ui.gitCloneOrFetchStatus.setText("listing versions ...")
         self.ui.gitCloneOrFetchStatus.repaint()
@@ -94,10 +94,23 @@ class FirmwareHandler:
         self.ui.gitCheckOutStatus.setText("changing version ...")
         self.ui.gitCheckOutStatus.repaint()
         time.sleep(0.5)
-        Git(LOCAL_REPO).checkout(self.git_tag, force=True)
-        self.ui.gitCheckOutStatus.setStyleSheet("background-color: green;")
-        self.ui.gitCheckOutStatus.setText("version selected")
-        logger.info(f"Git checkout version {self.git_tag} done")
+        try:
+            Git(LOCAL_REPO).checkout(self.git_tag, force=True)
+            self.ui.gitCheckOutStatus.setStyleSheet("background-color: green;")
+            self.ui.gitCheckOutStatus.setText("version selected")
+            logger.info(f"Git checkout version {self.git_tag} done")
+        except GitCommandError:
+            logger.error(
+                "can not checkout without tag reference, run 'download/update' and select a version"
+            )
+            self.ui.gitCheckOutStatus.setFixedWidth(280)
+            self.ui.gitCheckOutStatus.setFixedHeight(50)
+            self.ui.gitCheckOutStatus.setWordWrap(True)
+            self.ui.gitCheckOutStatus.setStyleSheet("background-color: red;")
+            self.ui.gitCheckOutStatus.setText(
+                "'Download/Update' and select version first"
+            )
+            logger.info(f"Git checkout version {self.git_tag} done")
 
     def clone_or_update(self):
         self.clone()
