@@ -117,3 +117,11 @@ class CoreConfigHandler:
         else:
             self.ui.saveLoadStatus.setStyleSheet("color: blue;")
             self.ui.saveLoadStatus.setText("nothing saved")
+
+    def check_api_connexion(self):
+        logger.warning("API connexion test not yet implemented")
+        self.ui.testApiConnexionStatus.setText("fct not implemented")
+
+    def check_mqtt_connexion(self):
+        logger.warning("MQTT connexion test not yet implemented")
+        self.ui.testMqttConnexionStatus.setText("fct not implemented")

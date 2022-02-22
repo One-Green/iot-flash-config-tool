@@ -61,10 +61,17 @@ class Main(QMainWindow):
         self.ui.gitCheckOutButton.clicked.connect(self.firmware_tab.checkout)
 
         # ----- tab: core configuration
+        self.ui.testApiConnexionButton.clicked.connect(
+            self.core_config_tab.check_api_connexion
+        )
+        self.ui.testMqttConnexionButton.clicked.connect(
+            self.core_config_tab.check_mqtt_connexion
+        )
         self.ui.loadCoreConfigFileButton.clicked.connect(self.core_config_tab.load_file)
         self.ui.saveCoreConfigFileButton.clicked.connect(self.core_config_tab.save_file)
-
         logger.debug("linking button to actions done")
+
+        # ----- tab: flash
 
 
 if __name__ == "__main__":
