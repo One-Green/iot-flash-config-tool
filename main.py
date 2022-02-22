@@ -7,6 +7,7 @@ from src.main_ui import Ui_MainWindow
 from src.handlers.setup_handlers import SetupHandler
 from src.handlers.firmware_handlers import FirmwareHandler
 from src.handlers.core_config_handlers import CoreConfigHandler
+from src.handlers.flash_handlers import FlashHandler
 
 handler = colorlog.StreamHandler()
 handler.setFormatter(
@@ -32,6 +33,7 @@ class Main(QMainWindow):
         self.setup_tab = SetupHandler(ui=self.ui)
         self.firmware_tab = FirmwareHandler(ui=self.ui)
         self.core_config_tab = CoreConfigHandler(ui=self.ui)
+        self.flash_config_tab = FlashHandler(ui=self.ui)
         logger.debug("loading handlers classes: done")
 
         # --- button method link
@@ -69,9 +71,10 @@ class Main(QMainWindow):
         )
         self.ui.loadCoreConfigFileButton.clicked.connect(self.core_config_tab.load_file)
         self.ui.saveCoreConfigFileButton.clicked.connect(self.core_config_tab.save_file)
-        logger.debug("linking button to actions done")
 
         # ----- tab: flash
+        self.ui.nodeTypeList.itemClicked.connect(self.flash_config_tab.set_firmwares)
+        logger.debug("linking button to actions done")
 
 
 if __name__ == "__main__":

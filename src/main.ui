@@ -43,7 +43,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Check and install depdencies needed for flash</string>
+          <string>Check and install dependencies needed for flash</string>
          </property>
         </widget>
        </item>

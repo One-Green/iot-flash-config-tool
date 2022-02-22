@@ -396,7 +396,7 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "🌿 one-green.io flash/config tool ")
         )
         self.label.setText(
-            _translate("MainWindow", "Check and install depdencies needed for flash")
+            _translate("MainWindow", "Check and install dependencies needed for flash")
         )
         self.label_2.setText(_translate("MainWindow", "Tool"))
         self.label_3.setText(_translate("MainWindow", "Check"))
