@@ -74,6 +74,9 @@ class Main(QMainWindow):
 
         # ----- tab: flash
         self.ui.nodeTypeList.itemClicked.connect(self.flash_config_tab.set_firmwares)
+        self.ui.firmwareList.itemClicked.connect(
+            self.flash_config_tab.set_firmware_src_path
+        )
         self.ui.refreshDevicespushButton.clicked.connect(
             self.flash_config_tab.list_serial_ports
         )
