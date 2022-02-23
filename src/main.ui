@@ -663,7 +663,7 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_9">
        <item row="3" column="1">
-        <widget class="QComboBox" name="comboBox"/>
+        <widget class="QComboBox" name="deviceListcomboBox"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="uniqueTagLabel">
@@ -740,7 +740,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QLabel" name="testMqttConnexionStatusLabel_3">
+     <widget class="QLabel" name="flashStatus">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -753,7 +753,7 @@
        <string>unkown</string>
       </property>
      </widget>
-     <widget class="QLabel" name="testMqttConnexionStatusLabel_2">
+     <widget class="QLabel" name="flashStatusLabel">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -766,7 +766,7 @@
        <string>status:</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="refreshDevicespushButton">
       <property name="geometry">
        <rect>
         <x>70</x>
