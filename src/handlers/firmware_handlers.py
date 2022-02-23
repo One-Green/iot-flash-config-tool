@@ -1,13 +1,12 @@
 import os
+import time
+import colorlog
 from git import Repo, Git
 from git.exc import GitCommandError
-import colorlog
 from src.main_ui import Ui_MainWindow
-import time
+from project_settings import LOCAL_REPO
 
 logger = colorlog.getLogger("default-logger")
-
-LOCAL_REPO: str = os.path.join(os.getcwd(), "_firmware")
 
 
 class FirmwareHandler:
