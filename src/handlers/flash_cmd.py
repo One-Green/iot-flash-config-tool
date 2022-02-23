@@ -13,13 +13,10 @@ class FlashCmd:
         envs = []
         for k, v in kwargs.items():
             envs.append(f"{k}={v}")
-
         # if windows add 'set' suffix eg "set WIFI_PASSWORD=my-wifi-password"
         if platform.system() == "Windows":
             envs = list(map(self.__envs_for_windows, envs))
-
         envs = " ".join(envs)
-
         cmd = f"cd {src_path} && pio update && {envs} pio run -t upload"
         return cmd
 
