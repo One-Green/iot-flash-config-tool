@@ -23,12 +23,12 @@ class BaseMicroController(object):
 
 
 SprinklerNodes = [
-    BaseMicroController(name="default", platform=Platform.esp_32, src_path="sprinkler")
+    BaseMicroController(name="main", platform=Platform.esp_32, src_path="sprinkler")
 ]
 
 WaterTankNodes = [
     BaseMicroController(
-        name="default", platform=Platform.esp_32, src_path="water/master_esp32"
+        name="main", platform=Platform.esp_32, src_path="water/master_esp32"
     ),
     BaseMicroController(
         name="slave-1", platform=Platform.arduino_mega, src_path="water/i2c_slave_mega"
