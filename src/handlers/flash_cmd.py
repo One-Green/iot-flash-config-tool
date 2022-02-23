@@ -9,7 +9,7 @@ class FlashCmd:
     def __envs_for_windows(env):
         return f"set {env}"
 
-    def __base_cmd_generator(self, src_path, **kwargs):
+    def __base_cmd_generator(self, src_path: str, upload_port: str, **kwargs):
         envs = []
         for k, v in kwargs.items():
             envs.append(f"{k}={v}")
@@ -17,12 +17,13 @@ class FlashCmd:
         if platform.system() == "Windows":
             envs = list(map(self.__envs_for_windows, envs))
         envs = " ".join(envs)
-        cmd = f"cd {src_path} && pio update && {envs} pio run -t upload"
+        cmd = f"cd {src_path} && pio update && {envs} pio run -t upload --upload-port {upload_port}"
         return cmd
 
     def get_main_microchip_cmd(
         self,
         src_path: str,
+        upload_port: str,
         wifi_ssid: str,
         wifi_password: str,
         api_gateway_url: str,
@@ -36,6 +37,7 @@ class FlashCmd:
     ):
         return self.__base_cmd_generator(
             src_path=src_path,
+            upload_port=upload_port,
             WIFI_SSID=wifi_ssid,
             WIFI_PASSWORD=wifi_password,
             API_GATEWAY_URL=api_gateway_url,
