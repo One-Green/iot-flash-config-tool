@@ -1,6 +1,6 @@
 import sys
-import colorlog
 from PyQt6.QtWidgets import QMainWindow, QApplication
+from project_settings import logger
 from src.main_ui import Ui_MainWindow
 
 # Handler classes
@@ -8,14 +8,6 @@ from src.handlers.setup_handlers import SetupHandler
 from src.handlers.firmware_handlers import FirmwareHandler
 from src.handlers.core_config_handlers import CoreConfigHandler
 from src.handlers.flash_handlers import FlashHandler
-
-handler = colorlog.StreamHandler()
-handler.setFormatter(
-    colorlog.ColoredFormatter("%(log_color)s%(levelname)s:%(name)s:%(message)s")
-)
-logger = colorlog.getLogger("default-logger")
-logger.addHandler(handler)
-logger.setLevel(colorlog.DEBUG)
 
 
 class Main(QMainWindow):
@@ -80,6 +72,7 @@ class Main(QMainWindow):
         self.ui.refreshDevicespushButton.clicked.connect(
             self.flash_config_tab.list_serial_ports
         )
+        self.ui.testCommandpushButton.clicked.connect(self.flash_config_tab.test_cmd)
         logger.debug("linking button to actions done")
 
 

@@ -18,6 +18,8 @@ class CoreConfigHandler:
         self.mqtt_port: str = ""
         self.mqtt_username: str = ""
         self.mqtt_password: str = ""
+        self.wifi_ssid: str = ""
+        self.wifi_password: str = ""
 
     @staticmethod
     def __read_yaml(_file_path: str) -> dict:
@@ -39,6 +41,8 @@ class CoreConfigHandler:
         self.mqtt_port: str = self.ui.mqttPortLineEdit.text()
         self.mqtt_username: str = self.ui.mqttUsernameLineEdit.text()
         self.mqtt_password: str = self.ui.mqttPasswordLineEdit.text()
+        self.wifi_ssid: str = self.ui.wifiSSIDLineEdit.text()
+        self.wifi_password: str = self.ui.wifiPasswordEditLine.text()
 
     def __set_ui_values(self):
         self.ui.apiHostLineEdit.setText(self.api_host)
@@ -49,6 +53,8 @@ class CoreConfigHandler:
         self.ui.mqttPortLineEdit.setText(self.mqtt_port)
         self.ui.mqttUsernameLineEdit.setText(self.mqtt_username)
         self.ui.mqttPasswordLineEdit.setText(self.mqtt_password)
+        self.ui.wifiSSIDLineEdit.setText(self.wifi_ssid)
+        self.ui.wifiPasswordEditLine.setText(self.wifi_password)
 
     def __set_cls_attribute(self, d: dict) -> bool:
         try:
@@ -62,6 +68,9 @@ class CoreConfigHandler:
             self.mqtt_port: str = d["mqtt"]["port"]
             self.mqtt_username: str = d["mqtt"]["username"]
             self.mqtt_password: str = d["mqtt"]["password"]
+            # wifi configs
+            self.wifi_ssid: str = d["wifi"]["ssid"]
+            self.wifi_password: str = d["wifi"]["password"]
             return True
         except (TypeError, KeyError):
             return False
@@ -82,6 +91,10 @@ class CoreConfigHandler:
                         "port": self.mqtt_port,
                         "username": self.mqtt_username,
                         "password": self.mqtt_password,
+                    },
+                    "wifi": {
+                        "ssid": self.wifi_ssid,
+                        "password": self.wifi_password,
                     },
                 },
                 _,
