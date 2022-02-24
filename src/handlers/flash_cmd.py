@@ -12,12 +12,12 @@ class FlashCmd:
     def __base_cmd_generator(self, src_path: str, upload_port: str, **kwargs):
         envs = []
         for k, v in kwargs.items():
-            envs.append(f"{k}={v}")
+            envs.append(f"{k}='{v}'")
         # if windows add 'set' suffix eg "set WIFI_PASSWORD=my-wifi-password"
         if platform.system() == "Windows":
             envs = list(map(self.__envs_for_windows, envs))
         envs = " ".join(envs)
-        cmd = f"cd {src_path} && pio update && {envs} pio run -t upload --upload-port {upload_port}"
+        cmd = f"cd {src_path} && pio update && {envs} && pio run -t upload --upload-port {upload_port}"
         return cmd
 
     def get_main_microchip_cmd(
