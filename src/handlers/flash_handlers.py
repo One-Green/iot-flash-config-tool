@@ -22,6 +22,7 @@ class FlashHandler:
         self.firmware_src_path = ""
         self.list_serial_ports()
         self.set_default_node_and_firmware()
+        self.known_flash_err_msg: list = ["Traceback", "FAILED", "Error"]
 
     def set_default_node_and_firmware(self):
         # set Sprinkler node and default firmware
@@ -91,9 +92,7 @@ class FlashHandler:
         self.ui.flashStatus.setText("devices list updated")
 
     def flash(self):
-        known_err_msg: list = ["Traceback", "FAILED"]
         err: bool = False
-
         process = Popen(self.generate_cmd(), shell=True, stdout=PIPE, stderr=STDOUT)
         with process.stdout:
             try:
@@ -103,7 +102,7 @@ class FlashHandler:
                     self.ui.flashStatus.setText(line)
                     self.ui.flashStatus.repaint()
                     pio_logger.debug(f"{line}")
-                    if any(_ in line for _ in known_err_msg):
+                    if any(_ in line for _ in self.known_flash_err_msg):
                         err = True
             except CalledProcessError as e:
                 self.ui.flashStatus.setStyleSheet("background-color: red;")
