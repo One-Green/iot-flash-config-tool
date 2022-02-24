@@ -3,10 +3,12 @@ import sys
 import glob
 import serial
 import colorlog
+from project_settings import LOCAL_REPO
+from PyQt6.QtWidgets import QMessageBox
 from src.main_ui import Ui_MainWindow
 from src.handlers.firmware_def import SprinklerNodes
 from src.handlers.firmware_def import WaterTankNodes
-from project_settings import LOCAL_REPO
+from src.handlers.flash_cmd import FlashCmd
 
 logger = colorlog.getLogger("default-logger")
 
@@ -14,12 +16,23 @@ logger = colorlog.getLogger("default-logger")
 class FlashHandler:
     def __init__(self, ui):
         self.ui: Ui_MainWindow = ui
+        self.flash_cmd: FlashCmd = FlashCmd()
         self.sprinkler_nodes = SprinklerNodes
         self.water_tank_nodes = WaterTankNodes
         self.node_type: str = ""
         self.firmware_type: str = ""
         self.firmware_src_path = ""
         self.list_serial_ports()
+        self.set_default_node_and_firmware()
+
+    def set_default_node_and_firmware(self):
+        # set Sprinkler node and default firmware
+        self.ui.nodeTypeList.setCurrentRow(0)
+        self.ui.firmwareList.addItems(
+            [getattr(_, "caption_name") for _ in SprinklerNodes]
+        )
+        self.ui.firmwareList.setCurrentRow(0)
+        self.firmware_src_path = os.path.join(LOCAL_REPO, SprinklerNodes[0].src_path)
 
     def set_firmwares(self, node_type):
         logger.debug(f"selected node '{node_type.text()}'")
@@ -77,3 +90,46 @@ class FlashHandler:
         self.ui.deviceListcomboBox.clear()
         self.ui.deviceListcomboBox.addItems(result)
         self.ui.flashStatus.setText("devices list updated")
+
+    def flash(self):
+        pass
+
+    def display_cmd(self):
+        logger.debug("cmd test clicked")
+        info_window = QMessageBox()
+        info_window.setIcon(QMessageBox.Icon.Question)
+        info_window.setWindowTitle("Flash command details")
+        info_window.setText(
+            "Pio cmd check: click on details and share (without wifi ssid and wifi password) for "
+            "troubleshooting "
+        )
+        info_window.setDetailedText(self.generate_cmd())
+        info_window.exec()
+
+    def generate_cmd(self) -> str:
+        logger.debug("generating flash command ")
+        # override water tank node type
+        # not scalable for now
+        if self.node_type == "Water tank":
+            node_tag = "default"
+            logger.warning(f"water tank node detected, overriding {node_tag=}")
+        else:
+            node_tag = self.ui.uniqueTaglineEdit.text()
+
+        cmd = self.flash_cmd.get_main_microchip_cmd(
+            src_path=self.firmware_src_path,
+            upload_port=self.ui.deviceListcomboBox.currentText(),
+            wifi_ssid=self.ui.wifiSSIDLineEdit.text(),
+            wifi_password=self.ui.wifiPasswordEditLine.text(),
+            api_gateway_url=self.ui.apiHostLineEdit.text(),
+            api_gateway_basic_auth_user=self.ui.apiUsernameLineEdit.text(),
+            api_gateway_basic_auth_password=self.ui.apiPasswordLineEdit.text(),
+            node_tag=node_tag,
+            mqtt_server=self.ui.mqttHostLineEdit.text(),
+            mqtt_port=self.ui.mqttPortLineEdit.text(),
+            mqtt_user=self.ui.mqttUsernameLineEdit.text(),
+            mqtt_password=self.ui.mqttPasswordLineEdit.text(),
+        )
+        logger.debug("generated command")
+        logger.debug(cmd)
+        return cmd

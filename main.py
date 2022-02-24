@@ -72,7 +72,7 @@ class Main(QMainWindow):
         self.ui.refreshDevicespushButton.clicked.connect(
             self.flash_config_tab.list_serial_ports
         )
-        self.ui.testCommandpushButton.clicked.connect(self.flash_config_tab.test_cmd)
+        self.ui.testCommandpushButton.clicked.connect(self.flash_config_tab.display_cmd)
         logger.debug("linking button to actions done")
 
 

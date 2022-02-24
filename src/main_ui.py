@@ -306,7 +306,7 @@ class Ui_MainWindow(object):
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
         self.pushButton_2 = QtWidgets.QPushButton(self.tab_4)
-        self.pushButton_2.setGeometry(QtCore.QRect(290, 420, 201, 41))
+        self.pushButton_2.setGeometry(QtCore.QRect(300, 420, 191, 41))
         self.pushButton_2.setObjectName("pushButton_2")
         self.gridLayoutWidget_9 = QtWidgets.QWidget(self.tab_4)
         self.gridLayoutWidget_9.setGeometry(QtCore.QRect(10, 10, 481, 391))
@@ -359,10 +359,10 @@ class Ui_MainWindow(object):
         self.flashStatusLabel.setGeometry(QtCore.QRect(10, 460, 61, 29))
         self.flashStatusLabel.setObjectName("flashStatusLabel")
         self.refreshDevicespushButton = QtWidgets.QPushButton(self.tab_4)
-        self.refreshDevicespushButton.setGeometry(QtCore.QRect(110, 420, 171, 41))
+        self.refreshDevicespushButton.setGeometry(QtCore.QRect(120, 420, 171, 41))
         self.refreshDevicespushButton.setObjectName("refreshDevicespushButton")
         self.testCommandpushButton = QtWidgets.QPushButton(self.tab_4)
-        self.testCommandpushButton.setGeometry(QtCore.QRect(10, 420, 91, 41))
+        self.testCommandpushButton.setGeometry(QtCore.QRect(10, 420, 101, 41))
         self.testCommandpushButton.setObjectName("testCommandpushButton")
         self.Flash.addTab(self.tab_4, "")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -404,7 +404,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.Flash.setCurrentIndex(2)
+        self.Flash.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -514,7 +514,7 @@ class Ui_MainWindow(object):
         self.refreshDevicespushButton.setText(
             _translate("MainWindow", "🔄 Refresh devices list")
         )
-        self.testCommandpushButton.setText(_translate("MainWindow", "🔍 Test cmd"))
+        self.testCommandpushButton.setText(_translate("MainWindow", "🔍 Check"))
         self.Flash.setTabText(
             self.Flash.indexOf(self.tab_4), _translate("MainWindow", "⚡ Flash")
         )

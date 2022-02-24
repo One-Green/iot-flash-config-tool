@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -674,9 +674,9 @@
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
-        <x>290</x>
+        <x>300</x>
         <y>420</y>
-        <width>201</width>
+        <width>191</width>
         <height>41</height>
        </rect>
       </property>
@@ -801,7 +801,7 @@
      <widget class="QPushButton" name="refreshDevicespushButton">
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>120</x>
         <y>420</y>
         <width>171</width>
         <height>41</height>
@@ -816,12 +816,12 @@
        <rect>
         <x>10</x>
         <y>420</y>
-        <width>91</width>
+        <width>101</width>
         <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>🔍 Test cmd</string>
+       <string>🔍 Check</string>
       </property>
      </widget>
     </widget>
