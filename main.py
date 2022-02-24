@@ -73,6 +73,7 @@ class Main(QMainWindow):
             self.flash_config_tab.list_serial_ports
         )
         self.ui.testCommandpushButton.clicked.connect(self.flash_config_tab.display_cmd)
+        self.ui.flashButton.clicked.connect(self.flash_config_tab.flash)
         logger.debug("linking button to actions done")
 
 

@@ -305,9 +305,9 @@ class Ui_MainWindow(object):
         self.Flash.addTab(self.tab_2, "")
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
-        self.pushButton_2 = QtWidgets.QPushButton(self.tab_4)
-        self.pushButton_2.setGeometry(QtCore.QRect(300, 420, 191, 41))
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.flashButton = QtWidgets.QPushButton(self.tab_4)
+        self.flashButton.setGeometry(QtCore.QRect(300, 420, 191, 41))
+        self.flashButton.setObjectName("flashButton")
         self.gridLayoutWidget_9 = QtWidgets.QWidget(self.tab_4)
         self.gridLayoutWidget_9.setGeometry(QtCore.QRect(10, 10, 481, 391))
         self.gridLayoutWidget_9.setObjectName("gridLayoutWidget_9")
@@ -487,7 +487,7 @@ class Ui_MainWindow(object):
             self.Flash.indexOf(self.tab_2),
             _translate("MainWindow", "🔧 Core Configuration"),
         )
-        self.pushButton_2.setText(_translate("MainWindow", "⚡ FLASH FIRMWARE"))
+        self.flashButton.setText(_translate("MainWindow", "⚡ FLASH FIRMWARE"))
         self.uniqueTagLabel.setText(_translate("MainWindow", "Set unique tag"))
         self.firmwareListTag.setText(_translate("MainWindow", "Firwmare"))
         self.label_7.setText(_translate("MainWindow", "Device"))

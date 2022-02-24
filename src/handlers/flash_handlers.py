@@ -2,15 +2,13 @@ import os
 import sys
 import glob
 import serial
-import colorlog
-from project_settings import LOCAL_REPO
+from subprocess import Popen, PIPE, STDOUT, CalledProcessError
+from project_settings import LOCAL_REPO, logger, pio_logger
 from PyQt6.QtWidgets import QMessageBox
 from src.main_ui import Ui_MainWindow
 from src.handlers.firmware_def import SprinklerNodes
 from src.handlers.firmware_def import WaterTankNodes
 from src.handlers.flash_cmd import FlashCmd
-
-logger = colorlog.getLogger("default-logger")
 
 
 class FlashHandler:
@@ -89,10 +87,34 @@ class FlashHandler:
         logger.debug(f"port list {result}")
         self.ui.deviceListcomboBox.clear()
         self.ui.deviceListcomboBox.addItems(result)
+        self.ui.flashStatus.setStyleSheet("")
         self.ui.flashStatus.setText("devices list updated")
 
     def flash(self):
-        pass
+        known_err_msg: list = ["Traceback", "FAILED"]
+        err: bool = False
+
+        process = Popen(self.generate_cmd(), shell=True, stdout=PIPE, stderr=STDOUT)
+        with process.stdout:
+            try:
+                for line in iter(process.stdout.readline, b""):
+                    line = line.decode("utf-8").strip()
+                    self.ui.flashStatus.setStyleSheet("color: blue;")
+                    self.ui.flashStatus.setText(line)
+                    self.ui.flashStatus.repaint()
+                    pio_logger.debug(f"{line}")
+                    if any(_ in line for _ in known_err_msg):
+                        err = True
+            except CalledProcessError as e:
+                self.ui.flashStatus.setStyleSheet("background-color: red;")
+                self.ui.flashStatus.setText("process error: check 'pio.log' file")
+                pio_logger.error(f"{str(e)}")
+        if err:
+            self.ui.flashStatus.setStyleSheet("background-color: red;")
+            self.ui.flashStatus.setText("flash failed: check 'pio.log' file")
+        else:
+            self.ui.flashStatus.setStyleSheet("background-color: green;")
+            self.ui.flashStatus.setText("Flashed successfully")
 
     def display_cmd(self):
         logger.debug("cmd test clicked")
