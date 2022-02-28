@@ -9,6 +9,8 @@ pyqt6 = "*"
 colorlog = "*"
 gitpython = "*"
 pyyaml = "*"
+serial = "*"
+pyserial = "*"
 
 [dev-packages]
 ipython = "*"

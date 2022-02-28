@@ -22,7 +22,12 @@ class FlashHandler:
         self.firmware_src_path = ""
         self.list_serial_ports()
         self.set_default_node_and_firmware()
-        self.known_flash_err_msg: list = ["Traceback", "FAILED", "Error"]
+        self.known_flash_err_msg: list = [
+            "Traceback",
+            "FAILED",
+            "Error",
+            "No such file or directory",
+        ]
 
     def set_default_node_and_firmware(self):
         # set Sprinkler node and default firmware
@@ -40,11 +45,18 @@ class FlashHandler:
             self.ui.firmwareList.addItems(
                 [getattr(_, "caption_name") for _ in SprinklerNodes]
             )
+            self.node_type = node_type.text()
+
         elif node_type.text() == "Water tank":
             self.ui.firmwareList.addItems(
                 [getattr(_, "caption_name") for _ in WaterTankNodes]
             )
-        self.node_type = node_type.text()
+            self.node_type = node_type.text()
+
+        else:
+            self.node_type = "node_type_not_handled"
+            self.firmware_src_path = "firmware_not_defined"
+            logger.warning(f"selected node type not handled")
 
     def set_firmware_src_path(self, firmware_type):
         logger.debug(f"selected firmware '{firmware_type.text()}'")
@@ -93,27 +105,43 @@ class FlashHandler:
 
     def flash(self):
         err: bool = False
-        process = Popen(self.generate_cmd(), shell=True, stdout=PIPE, stderr=STDOUT)
-        with process.stdout:
-            try:
-                for line in iter(process.stdout.readline, b""):
-                    line = line.decode("utf-8").strip()
-                    self.ui.flashStatus.setStyleSheet("color: blue;")
-                    self.ui.flashStatus.setText(line)
+
+        confirm = QMessageBox()
+        confirm.setWindowTitle("Flash")
+        confirm.setText("Continue flash")
+        confirm.setStandardButtons(
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+
+        self.ui.flashStatus.setStyleSheet("color: blue;")
+        self.ui.flashStatus.setText("flash started")
+        self.ui.flashStatus.repaint()
+
+        if confirm.exec() == QMessageBox.StandardButton.Yes:
+            process = Popen(self.generate_cmd(), shell=True, stdout=PIPE, stderr=STDOUT)
+            with process.stdout:
+                try:
+                    for line in iter(process.stdout.readline, b""):
+                        line = line.decode("utf-8").strip()
+                        self.ui.flashStatus.setStyleSheet("color: blue;")
+                        self.ui.flashStatus.setText(line)
+                        self.ui.flashStatus.repaint()
+                        pio_logger.debug(f"{line}")
+                        if any(_ in line for _ in self.known_flash_err_msg):
+                            err = True
+                except CalledProcessError as e:
+                    self.ui.flashStatus.setStyleSheet("background-color: red;")
+                    self.ui.flashStatus.setText("process error: check 'pio.log' file")
                     self.ui.flashStatus.repaint()
-                    pio_logger.debug(f"{line}")
-                    if any(_ in line for _ in self.known_flash_err_msg):
-                        err = True
-            except CalledProcessError as e:
+                    pio_logger.error(f"{str(e)}")
+            if err:
                 self.ui.flashStatus.setStyleSheet("background-color: red;")
-                self.ui.flashStatus.setText("process error: check 'pio.log' file")
-                pio_logger.error(f"{str(e)}")
-        if err:
-            self.ui.flashStatus.setStyleSheet("background-color: red;")
-            self.ui.flashStatus.setText("flash failed: check 'pio.log' file")
-        else:
-            self.ui.flashStatus.setStyleSheet("background-color: green;")
-            self.ui.flashStatus.setText("Flashed successfully")
+                self.ui.flashStatus.setText("flash failed: check 'pio.log' file")
+                self.ui.flashStatus.repaint()
+            else:
+                self.ui.flashStatus.setStyleSheet("background-color: green;")
+                self.ui.flashStatus.setText("Flashed successfully")
+                self.ui.flashStatus.repaint()
 
     def display_cmd(self):
         logger.debug("cmd test clicked")

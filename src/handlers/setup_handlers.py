@@ -65,7 +65,7 @@ class SetupHandler:
     def is_pio_exist() -> bool:
         _platform = platform.system()
 
-        if _platform == ("Linux" or "Darwin"):
+        if _platform == "Linux" or "Darwin":
             _ = shutil.which(PIO)
             if _:
                 logger.info(f"{PIO} for {_platform} found: '{_}'")

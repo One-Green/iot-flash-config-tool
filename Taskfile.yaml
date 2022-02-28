@@ -62,3 +62,8 @@ tasks:
       - mv dist/main.exe build_windows/flash_tool_win_amd64.exe
       - yes | rm -rv build
       - yes | rm -rv dist
+
+  build-local:
+    desc: run pyinstaller locally
+    cmds:
+      - pyinstaller --onefile --windowed main.py
