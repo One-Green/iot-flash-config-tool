@@ -841,10 +841,11 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionCode_source"/>
-    <addaction name="actionCode_source_2"/>
+    <addaction name="docAction"/>
+    <addaction name="codeSourceAction"/>
     <addaction name="separator"/>
-    <addaction name="actionAbout_one_green_io"/>
+    <addaction name="licenceAction"/>
+    <addaction name="aboutAction"/>
    </widget>
    <addaction name="menuHelp"/>
   </widget>
@@ -883,17 +884,17 @@
     <string>Light - esp32</string>
    </property>
   </action>
-  <action name="actionCode_source">
+  <action name="docAction">
    <property name="text">
     <string>Doc</string>
    </property>
   </action>
-  <action name="actionCode_source_2">
+  <action name="codeSourceAction">
    <property name="text">
     <string>Code source</string>
    </property>
   </action>
-  <action name="actionAbout_one_green_io">
+  <action name="aboutAction">
    <property name="text">
     <string>About one-green.io</string>
    </property>
@@ -901,6 +902,11 @@
   <action name="actionDownload_latest">
    <property name="text">
     <string>Download latest</string>
+   </property>
+  </action>
+  <action name="licenceAction">
+   <property name="text">
+    <string>Licence</string>
    </property>
   </action>
  </widget>

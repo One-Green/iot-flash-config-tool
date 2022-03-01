@@ -4,6 +4,7 @@ from project_settings import logger
 from src.main_ui import Ui_MainWindow
 
 # Handler classes
+from src.handlers.top_menu_handlers import MenuHandler
 from src.handlers.setup_handlers import SetupHandler
 from src.handlers.firmware_handlers import FirmwareHandler
 from src.handlers.core_config_handlers import CoreConfigHandler
@@ -22,15 +23,23 @@ class Main(QMainWindow):
 
         # handler
         logger.debug("loading handlers classes")
+        self.top_menu_handler = MenuHandler(ui=self.ui)
         self.setup_tab = SetupHandler(ui=self.ui)
         self.firmware_tab = FirmwareHandler(ui=self.ui)
         self.core_config_tab = CoreConfigHandler(ui=self.ui)
         self.flash_config_tab = FlashHandler(ui=self.ui)
         logger.debug("loading handlers classes: done")
 
+        # --- top menu link
+        logger.debug("linking button to actions")
+        self.ui.docAction.triggered.connect(self.top_menu_handler.documentation_action)
+        self.ui.codeSourceAction.triggered.connect(
+            self.top_menu_handler.code_source_action
+        )
+        self.ui.licenceAction.triggered.connect(self.top_menu_handler.licence_action)
+        self.ui.aboutAction.triggered.connect(self.top_menu_handler.about_action)
         # --- button method link
         # ----- tab: setup
-        logger.debug("linking button to actions")
         self.ui.gitCheckButton.clicked.connect(self.setup_tab.check_git)
         self.ui.gitInstallButton.clicked.connect(self.setup_tab.setup_git)
         self.ui.gitInstallButton.setEnabled(False)
